@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="sasha" class="ru.bukharov.training.spring.bean.People">
+        <constructor-arg name="head" ref="blackHead" />
+        <constructor-arg name="name" value="Sasha" />
+        <property name="pants" ref="redPants" />
+    </bean>
+
+    <bean id="blackHead" class="ru.bukharov.training.spring.bean.Head">
+        <property name="hairColor" value="Black" />
+    </bean>
+
+    <bean id="redPants" class="ru.bukharov.training.spring.bean.Pants">
+        <property name="color" value="Red" />
+    </bean>
+</beans>
