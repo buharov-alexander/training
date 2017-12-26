@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="sasha" class="ru.bukharov.training.spring.service.Person">
+        <constructor-arg name="name" value="Sasha" />
+    </bean>
+
+    <bean id="loggerAdvice" class="ru.bukharov.training.spring.advice.LoggerAdvice" />
+
+    <bean id="namePointcut" class="ru.bukharov.training.spring.pointcut.NamePointcut" >
+        <constructor-arg name="methodName" value="sayBye" />
+    </bean>
+
+    <bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="loggerAdvice" />
+        <property name="pointcut" ref="namePointcut" />
+    </bean>
+
+    <bean id="proxyPerson" class="org.springframework.aop.framework.ProxyFactoryBean" >
+        <property name="target" ref="sasha" />
+        <property name="interceptorNames">
+            <list>
+                <value>advisor</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
