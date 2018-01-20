@@ -28,9 +28,21 @@ public class InnerService {
         logTransaction();
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void notSupportedPropagationMethod() {
+        logTransaction();
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void supportsPropagationMethod() {
+        logTransaction();
+    }
+
     private void logTransaction() {
         String name = TransactionSynchronizationManager.getCurrentTransactionName();
+        boolean active = TransactionSynchronizationManager.isActualTransactionActive();
         name = name.substring(name.lastIndexOf(".") + 1);
-        System.out.println("Inner service, transaction " + name);
+        System.out.println(String.format("Inner service, transaction %s, active: %b", name, active));
     }
+
 }

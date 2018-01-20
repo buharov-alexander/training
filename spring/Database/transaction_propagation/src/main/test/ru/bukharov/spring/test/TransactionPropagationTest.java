@@ -89,4 +89,25 @@ public class TransactionPropagationTest {
         outerService.requiredThenNever();
     }
 
+//    NOT_SUPPORTED
+//    Execute non-transactionally, suspend the current transaction if one exists.
+
+    @Test
+    void testNotSupportedWithCurrentTransaction() {
+        outerService.requiredThenNotSupported();
+    }
+
+//    SUPPORTS
+//    Support a current transaction, execute non-transactionally if none exists.
+
+    @Test
+    void testSupportsWithoutCurrentTransaction() {
+        innerService.supportsPropagationMethod();
+    }
+
+    @Test
+    void testSupportsWithCurrentTransaction() {
+        outerService.requiredThenSupports();
+    }
+
 }

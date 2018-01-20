@@ -36,9 +36,23 @@ public class OuterService {
         innerService.neverPropagationMethod();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void requiredThenNotSupported() {
+        logTransaction();
+        innerService.notSupportedPropagationMethod();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void requiredThenSupports() {
+        logTransaction();
+        innerService.supportsPropagationMethod();
+    }
+
     private void logTransaction() {
         String name = TransactionSynchronizationManager.getCurrentTransactionName();
+        boolean active = TransactionSynchronizationManager.isActualTransactionActive();
         name = name.substring(name.lastIndexOf(".") + 1);
-        System.out.println("Outer service, transaction " + name);
+        System.out.println(String.format("Outer service, transaction %s, active: %b", name, active));
     }
+
 }
