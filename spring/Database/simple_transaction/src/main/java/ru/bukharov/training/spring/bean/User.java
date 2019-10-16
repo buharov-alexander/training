@@ -51,7 +51,7 @@ public class User {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
-        accounts.stream().forEach(account -> account.setUser(this));
+        accounts.forEach(account -> account.setUser(this));
     }
 
     @Override

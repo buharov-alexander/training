@@ -12,12 +12,9 @@ public class Starter {
         System.out.println(String.format("We got person %s, class %s",
                 person.getName(), person.getClass().getName()));
 
-        String result = person.sayHello();
-        System.out.println(result);
-
+        person.sayHello();
         System.out.println("----------------------");
 
-        result = person.sayBye();
-        System.out.println(result);
+        person.sayBye();
     }
 }

@@ -12,7 +12,6 @@ public class LoggerAdvice {
 
     @Pointcut("execution(* sayBye()) && bean(sasha)")
     public void namePointcut() {
-
     }
 
     @Around("namePointcut()")
