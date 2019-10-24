@@ -9,8 +9,8 @@ import ru.bukharov.training.spring.bean.Person;
 public class AppConfig {
 
     @Bean
-    public Person myPerson() {
-        return new Person();
+    public Person myPerson(Head head) {
+        return new Person(head);
     }
 
     @Bean
