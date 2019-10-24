@@ -14,3 +14,5 @@ Create application context and bean using Java-based configs
 Create bean using a factory method
 7. **bean_scope**  
 Create bean with prototype scope
+8. **bean_post_processors**  
+Example with BeanPostProcessor, BeanFactoryPostProcessor and ApplicationListener
