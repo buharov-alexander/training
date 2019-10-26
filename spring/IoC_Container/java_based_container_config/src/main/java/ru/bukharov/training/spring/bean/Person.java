@@ -2,13 +2,24 @@ package ru.bukharov.training.spring.bean;
 
 public class Person {
 
-    private Head head;
+    private Eye leftEye;
+    private Eye rightEye;
 
-    public Person(Head head) {
-        this.head = head;
+    public Person(Eye leftEye, Eye rightEye) {
+        this.leftEye = leftEye;
+        this.rightEye = rightEye;
     }
 
-    public Head getHead() {
-        return head;
+    public Eye getLeftEye() {
+        return leftEye;
+    }
+
+    public Eye getRightEye() {
+        return rightEye;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Person{ leftEye = %s, rightEye = %s }", leftEye, rightEye);
     }
 }

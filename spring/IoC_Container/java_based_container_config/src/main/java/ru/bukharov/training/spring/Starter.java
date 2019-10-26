@@ -8,9 +8,15 @@ public class Starter {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        Person person = context.getBean(Person.class);
-        System.out.println(String.format("Hello, I'm java-based configured person: %s", person));
+        Person firstPerson = context.getBean("firstPerson", Person.class);
+        System.out.println(String.format("Hello, I'm java-based configured person: %s", firstPerson));
 
-        System.out.println(String.format("I've got the head: %s", person.getHead()));
+        System.out.println(String.format("I've got the SAME singleton eyes: %s and %s", firstPerson.getLeftEye(), firstPerson.getRightEye()));
+
+        System.out.println("------------");
+
+        Person secondPerson = context.getBean("secondPerson", Person.class);
+        System.out.println(String.format("I'm java-based configured person: %s", secondPerson));
+        System.out.println(String.format("I've got the DIFFERENT prototype eyes: %s and %s", secondPerson.getLeftEye(), secondPerson.getRightEye()));
     }
 }
