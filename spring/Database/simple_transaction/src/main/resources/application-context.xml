@@ -3,11 +3,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx
-		http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <tx:annotation-driven/>
     <context:component-scan base-package="ru.bukharov.training.spring"/>
@@ -19,22 +19,20 @@
         <property name="password" value=""/>
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernateSessionFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="annotatedClasses">
-            <list>
-                <value>ru.bukharov.training.spring.bean.User</value>
-                <value>ru.bukharov.training.spring.bean.Account</value>
-            </list>
+        <property name="packagesToScan" value="ru.bukharov.training.spring.bean"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="hibernateProperties">
-            <value>
-                hibernate.dialect=org.hibernate.dialect.SQLiteDialect
-            </value>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</prop>
+            </props>
         </property>
     </bean>
 

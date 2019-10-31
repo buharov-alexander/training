@@ -26,19 +26,19 @@ public class Starter {
         user.setAccounts(accounts);
 
         System.out.println(String.format("Create a user with name: %s", user.getLogin()));
-        long id = userDAO.create(user);
+        userDAO.create(user);
         System.out.println(String.format("Find all: %s", userDAO.findAll()));
 
         try {
-            System.out.println(String.format("Delete the user with id: %s", id));
-            userDAO.deleteAndThrowException(id);
+            System.out.println(String.format("Delete the user with id: %s", user.getId()));
+            userDAO.deleteAndThrowException(user.getId());
         } catch (Exception e) {
             System.out.println(String.format("Exception was thrown: %s", e.getMessage()));
         }
         System.out.println(String.format("Deleting have to be rollbacked. Find all: %s", userDAO.findAll()));
 
-        System.out.println(String.format("Delete the user with id: %s", id));
-        userDAO.deleteById(id);
+        System.out.println(String.format("Delete the user with id: %s", user.getId()));
+        userDAO.deleteById(user.getId());
         System.out.println(String.format("Find all: %s", userDAO.findAll()));
 
     }
