@@ -1,7 +1,9 @@
 package ru.ru.bukharov.training.jpa;
 
 import javax.persistence.EntityManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.bukharov.training.jpa.EntityManagerUtil;
 import ru.bukharov.training.jpa.MessageDao;
@@ -19,6 +21,16 @@ class JpaTest {
     static void setUp() {
         EntityManager em = EntityManagerUtil.getEntityManager();
         dao = new MessageDao(em);
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        dao.beginTransaction();
+    }
+
+    @AfterEach
+    void afterEach() {
+        dao.commitTransaction();
     }
 
     @Test

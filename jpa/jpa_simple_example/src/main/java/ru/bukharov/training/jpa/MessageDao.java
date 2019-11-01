@@ -12,13 +12,19 @@ public class MessageDao {
     }
 
     public Message saveMessage(Message message) {
-        em.getTransaction().begin();
         em.persist(message);
-        em.getTransaction().commit();
         return message;
     }
 
     public Message findById(long id) {
         return em.find(Message.class, id);
+    }
+
+    public void beginTransaction() {
+        em.getTransaction().begin();
+    }
+
+    public void commitTransaction() {
+        em.getTransaction().commit();
     }
 }
