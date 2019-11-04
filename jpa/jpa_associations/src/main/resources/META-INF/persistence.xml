@@ -1,0 +1,27 @@
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence_2_1.xsd">
+
+    <persistence-unit name="JpaPU">
+        <!-- Persistence provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entity classes -->
+        <class>ru.bukharov.training.jpa.domain.Item</class>
+        <class>ru.bukharov.training.jpa.domain.Bid</class>
+
+        <properties>
+            <!-- ~ = relative to current user home directory -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:./test.db"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!-- This create automatically the DDL of the database's table -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+        </properties>
+    </persistence-unit>
+</persistence>
