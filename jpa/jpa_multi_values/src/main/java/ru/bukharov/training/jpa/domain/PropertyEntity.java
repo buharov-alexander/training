@@ -20,13 +20,17 @@ public class PropertyEntity implements Serializable {
 	private Long id;
 
 	private String name;
+
 	@NaturalId
 	private String multiValueId;
 
-	@OneToMany(mappedBy = "property",
-			orphanRemoval = true,
+	@OneToMany(orphanRemoval = true,
 			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL)
+	@JoinColumn(
+			name = "multiValueId",
+			referencedColumnName = "multiValueId"
+	)
 	private List<PropertyMultiValueEntity> multiSelectValues;
 
 	public Long getId() {
