@@ -50,7 +50,7 @@ class JpaTest {
 		PropertyMultiValueEntity value1 = new PropertyMultiValueEntity();
 		value1.setValue("red");
 		PropertyMultiValueEntity value2 = new PropertyMultiValueEntity();
-		value1.setValue("blue");
+		value2.setValue("blue");
 
 		List<PropertyMultiValueEntity> list = new ArrayList<>();
 		list.add(value1);
